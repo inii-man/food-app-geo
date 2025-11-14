@@ -33,8 +33,10 @@
                                     @method('PATCH')
                                     <select name="status" class="form-select form-select-lg" onchange="this.form.submit()">
                                         <option value="pending" {{ $order->status == 'pending' ? 'selected' : '' }}>Menunggu Konfirmasi</option>
+                                        <option value="confirmed" {{ $order->status == 'confirmed' ? 'selected' : '' }}>Dikonfirmasi</option>
                                         <option value="processing" {{ $order->status == 'processing' ? 'selected' : '' }}>Sedang Diproses</option>
                                         <option value="delivered" {{ $order->status == 'delivered' ? 'selected' : '' }}>Telah Dikirim</option>
+                                        <option value="completed" {{ $order->status == 'completed' ? 'selected' : '' }}>Selesai</option>
                                         <option value="cancelled" {{ $order->status == 'cancelled' ? 'selected' : '' }}>Dibatalkan</option>
                                     </select>
                                 </form>
@@ -42,10 +44,14 @@
                                 {{-- Customer only sees status badge --}}
                                 @if ($order->status == 'pending')
                                     <span class="badge bg-warning text-dark fs-6">Menunggu Konfirmasi</span>
+                                @elseif ($order->status == 'confirmed')
+                                    <span class="badge bg-primary fs-6">Dikonfirmasi</span>
                                 @elseif ($order->status == 'processing')
                                     <span class="badge bg-info text-dark fs-6">Sedang Diproses</span>
                                 @elseif ($order->status == 'delivered')
                                     <span class="badge bg-success fs-6">Telah Dikirim</span>
+                                @elseif ($order->status == 'completed')
+                                    <span class="badge bg-dark fs-6">Selesai</span>
                                 @elseif ($order->status == 'cancelled')
                                     <span class="badge bg-danger fs-6">Dibatalkan</span>
                                 @endif

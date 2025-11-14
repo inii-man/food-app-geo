@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->string('address');
-            $table->decimal('latitude', 10, 8)->nullable(); // Koordinat latitude
-            $table->decimal('longitude', 11, 8)->nullable(); // Koordinat longitude
+            $table->text('address')->nullable();
+            $table->decimal('latitude', 10, 8)->nullable();
+            $table->decimal('longitude', 11, 8)->nullable();
             $table->string('phone')->nullable();
             $table->string('image')->nullable();
             $table->boolean('is_active')->default(true);

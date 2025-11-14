@@ -71,8 +71,10 @@
                                                     @method('PATCH')
                                                     <select name="status" class="form-select form-select-sm" onchange="this.form.submit()">
                                                         <option value="pending" {{ $order->status == 'pending' ? 'selected' : '' }}>Menunggu</option>
+                                                        <option value="confirmed" {{ $order->status == 'confirmed' ? 'selected' : '' }}>Dikonfirmasi</option>
                                                         <option value="processing" {{ $order->status == 'processing' ? 'selected' : '' }}>Diproses</option>
                                                         <option value="delivered" {{ $order->status == 'delivered' ? 'selected' : '' }}>Dikirim</option>
+                                                        <option value="completed" {{ $order->status == 'completed' ? 'selected' : '' }}>Selesai</option>
                                                         <option value="cancelled" {{ $order->status == 'cancelled' ? 'selected' : '' }}>Dibatalkan</option>
                                                     </select>
                                                 </form>
@@ -104,10 +106,14 @@
                                                                 <p><strong>Status:</strong>
                                                                     @if($order->status == 'pending')
                                                                         <span class="badge bg-warning text-dark">Menunggu Konfirmasi</span>
+                                                                    @elseif($order->status == 'confirmed')
+                                                                        <span class="badge bg-primary">Dikonfirmasi</span>
                                                                     @elseif($order->status == 'processing')
                                                                         <span class="badge bg-info text-dark">Sedang Diproses</span>
                                                                     @elseif($order->status == 'delivered')
                                                                         <span class="badge bg-success">Telah Dikirim</span>
+                                                                    @elseif($order->status == 'completed')
+                                                                        <span class="badge bg-dark">Selesai</span>
                                                                     @elseif($order->status == 'cancelled')
                                                                         <span class="badge bg-danger">Dibatalkan</span>
                                                                     @endif
