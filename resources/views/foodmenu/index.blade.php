@@ -25,7 +25,7 @@
                                <tr>
                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $item->name }}</td>
                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->description }}</td>
-                                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${{ number_format($item->price, 2) }}</td>
+                                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ number_format($item->price, 2) }}</td>
                                       <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                         @if($item->image)
                                              <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" class="h-16 w-16 object-cover">

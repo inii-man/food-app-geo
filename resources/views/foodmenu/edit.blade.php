@@ -111,13 +111,9 @@
                         <hr class="my-4">
 
                         <div class="d-flex justify-content-between">
-                            <form action="{{ route('foodmenu.destroy', $foodMenu->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus menu ini?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">
-                                    <i class="bi bi-trash"></i> Hapus Menu
-                                </button>
-                            </form>
+                            <button type="button" class="btn btn-danger" onclick="deleteMenu()">
+                                <i class="bi bi-trash"></i> Hapus Menu
+                            </button>
                             
                             <div class="d-flex gap-2">
                                 <a href="{{ route('foodmenu.index') }}" class="btn btn-secondary">
@@ -128,6 +124,12 @@
                                 </button>
                             </div>
                         </div>
+                    </form>
+
+                    <!-- Separate delete form -->
+                    <form id="deleteForm" action="{{ route('foodmenu.destroy', $foodMenu->id) }}" method="POST" style="display: none;">
+                        @csrf
+                        @method('DELETE')
                     </form>
                 </div>
             </div>
@@ -147,6 +149,12 @@
             
             if (event.target.files[0]) {
                 reader.readAsDataURL(event.target.files[0]);
+            }
+        }
+
+        function deleteMenu() {
+            if (confirm('Yakin ingin menghapus menu ini?')) {
+                document.getElementById('deleteForm').submit();
             }
         }
     </script>
